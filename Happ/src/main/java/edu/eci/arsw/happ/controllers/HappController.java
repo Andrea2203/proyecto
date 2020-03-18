@@ -22,12 +22,12 @@ public class HappController {
         return new ResponseEntity<>(happService.getNurseAssistants(), HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value ="/patient", method = RequestMethod.GET)
+    @RequestMapping(value ="/patients", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGETPatients() throws HappException {
         return new ResponseEntity<>(happService.getPatients(), HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(path ="/{id}", method = RequestMethod.GET)
+    @RequestMapping(path ="patient/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGETPatientID(@PathVariable ("id") String id) throws HappException {
         return new ResponseEntity<>(happService.getPatientId(id), HttpStatus.ACCEPTED);
     }

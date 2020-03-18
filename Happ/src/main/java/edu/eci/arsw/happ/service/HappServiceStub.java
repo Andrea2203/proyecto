@@ -24,7 +24,7 @@ public class HappServiceStub implements HappService {
     @Override
     public List<NurseAssistant> getNurseAssistants() {
         String query = "SELECT * FROM nurseassistant;";
-        List<NurseAssistant> estudiantes = new ArrayList<NurseAssistant>();
+        List<NurseAssistant> nursesAssistants = new ArrayList<NurseAssistant>();
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
@@ -34,11 +34,11 @@ public class HappServiceStub implements HappService {
 				String idDocument = rs.getString("idDocument");
 				String documentType = rs.getString("documentType");
 				String name = rs.getString("name");
-				NurseAssistant estudiante = new NurseAssistant(idDocument,documentType,name);
-				estudiantes.add(estudiante);
+				NurseAssistant nurseAssistant = new NurseAssistant(idDocument,documentType,name);
+				nursesAssistants.add(nurseAssistant);
 			}
 			connection.close();
-			return estudiantes;
+			return nursesAssistants;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
@@ -58,8 +58,8 @@ public class HappServiceStub implements HappService {
 				String idDocument = rs.getString("idDocument");
 				String documentType = rs.getString("documentType");
 				String name = rs.getString("name");
-				Patient estudiante = new Patient(idDocument,documentType,name);
-				patients.add(estudiante);
+				Patient patient = new Patient(idDocument,documentType,name);
+				patients.add(patient);
 			}
 			connection.close();
 			return patients;
