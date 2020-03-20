@@ -15,13 +15,20 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Component
 public class Conexion {
+
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+	@Value("${spring.datasource.username}")
+	private String dbUsername;
+	@Value("${spring.datasource.password}")
+	private String dbPassword;
 	
 	@Bean
 	public DataSource dataSource() throws SQLException {
         HikariConfig config = new HikariConfig();
-		config.setJdbcUrl("jdbc:postgresql://ec2-3-234-169-147.compute-1.amazonaws.com:5432/du9cn7hjagit0?sslmode=require");
-		config.setUsername("dtmarhrahmjlva");
-		config.setPassword("1876aa241c30f307f63e90f7f12557fa7e55719dd69e83f10add8ea19de20be9");
+		config.setJdbcUrl(dbUrl);
+		config.setUsername(dbUsername);
+		config.setPassword(dbPassword);
 		config.setMaximumPoolSize(2);
 		return new HikariDataSource(config);
 

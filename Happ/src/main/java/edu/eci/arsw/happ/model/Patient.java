@@ -2,18 +2,14 @@ package edu.eci.arsw.happ.model;
 
 public class Patient extends User {
 
-    private String idPatient;
+    private String idPatient; 
     private String rh;
     private String birthDay;
 
-    public Patient(String idDocument, String documentType, String name) {
+    public Patient(String idDocument, String documentType, String name,String rh, String birthDay) {
         super(idDocument, documentType, name);
-    }
-
-    public void PatientSolo(String idDocument, String documentType, String name) {
-        this.idDocument = idDocument;
-        this.documentType = documentType;
-        this.name = name;
+        this.rh = rh;
+        this.birthDay = birthDay;
     }
 
     public String getIdDocumentAdmin() {

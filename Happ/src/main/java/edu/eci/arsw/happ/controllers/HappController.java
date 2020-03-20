@@ -17,19 +17,38 @@ public class HappController {
     @Autowired
     HappService happService;
 
+    //Consultar todas las enfermeras auxiliares
     @RequestMapping(value = "/nurses-assistants",method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGETNursesAssistants() throws HappException {
         return new ResponseEntity<>(happService.getNurseAssistants(), HttpStatus.ACCEPTED);
     }
-
-    @RequestMapping(value ="/patients", method = RequestMethod.GET)
-    public ResponseEntity<?> manejadorGETPatients() throws HappException {
-        return new ResponseEntity<>(happService.getPatients(), HttpStatus.ACCEPTED);
-    }
-
+    
+    //Consultar un paciente por su id
     @RequestMapping(path ="patient/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorGETPatientID(@PathVariable ("id") String id) throws HappException {
         return new ResponseEntity<>(happService.getPatientId(id), HttpStatus.ACCEPTED);
     }
+
+    //Consultar los pacientes asignados a una enfermera auxiliar con su id 
+    @RequestMapping(path ="nurses-assistants/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGETPatientofNurseAsistant(@PathVariable ("id") String id) throws HappException {
+        return new ResponseEntity<>(happService.getPatientofNurseAsistant(id), HttpStatus.ACCEPTED);
+    }
+    //Consultar estado de un paciente por su id
+    //Actualizar el estado de procedimiento de un paciente por su id
+    //informar novedades
+    //solicitar permisos
+    //Iniciar turno
+    //Cerrar turno
+    //login app
+    //logout app
+    
+    //Consultar todos los pacientes
+    @RequestMapping(value ="/patients", method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorGETPatients() throws HappException {
+        return new ResponseEntity<>(happService.getPatients(), HttpStatus.ACCEPTED);
+    }
+    
+    //Asignar auxiliares de enfermeria
 
 }

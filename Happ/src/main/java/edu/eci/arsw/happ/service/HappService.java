@@ -9,4 +9,5 @@ public interface HappService {
     List<NurseAssistant> getNurseAssistants();
     List<Patient> getPatients();
     Patient getPatientId(String id);
+	List<Patient> getPatientofNurseAsistant(String id);
 }
