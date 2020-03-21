@@ -1,49 +1,65 @@
 package edu.eci.arsw.happ.model;
 
-import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
 public class Procedure {
-    private int idProcedure;
-    private String description;
-    private boolean state;
-    private Date date;
+	
+    private long id;
+	
+	private String name;
+	
+	private String description;
 
-    public Procedure(int idProcedure, String description, boolean state, Date date){
-        this.idProcedure = idProcedure;
-        this.description = description;
-        this.state = state;
-        this.date = date;
-    }
+	private List<Undergoes> undergoes;
+	
 
-    public int getIdProcedure(){
-        return idProcedure;
-    }
+	public Procedure(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+	
+	public Procedure(){}
 
-    public String getDescription(){
-        return description;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public boolean getState(){
-        return state;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public Date getDate(){
-        return date;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setIdProcedure(int idProcedure){
-        this.idProcedure = idProcedure;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description){
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setState(boolean state){
-        this.state = state;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setDate(Date date){
-        this.date = date;
-    }
+	public List<Undergoes> getUndergoes() {
+		return undergoes;
+	}
+
+	public void setUndergoes(List<Undergoes> undergoes) {
+		this.undergoes = undergoes;
+	}	
+	
 }

@@ -1,27 +1,72 @@
 package edu.eci.arsw.happ.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
 public class Room {
-    private int idRoom;
-    private boolean state;
+	
+	private int roomnumber;
+	
+	private String roomType;
+	
+	private int blockCode;	
+	
+	private boolean unavailable = false;
+	
+	private List<Bed> bedId;
+	
+	public Room() {}
 
-    public Room(int idRoom, boolean state){
-        this.idRoom = idRoom;
-        this.state = state;
-    }
+	public int getRoomnumber() {
+		return roomnumber;
+	}
 
-    public int getIdRoom(){
-        return idRoom;
-    }
+	public void setRoomnumber(int roomnumber) {
+		this.roomnumber = roomnumber;
+	}
 
-    public boolean getStateRoom(){
-        return state;
-    }
+	public String getRoomType() {
+		return roomType;
+	}
 
-    public void setIdRoom(int idRoom){
-        this.idRoom = idRoom;
-    }
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}	
 
-    public void setStateRoom(boolean state){
-        this.state = state;
-    }
+	public int getBlockCode() {
+		return blockCode;
+	}
+
+	public void setBlockCode(int blockCode) {
+		this.blockCode = blockCode;
+	}
+
+	public boolean isUnavailable() {
+		return unavailable;
+	}
+
+	public void setUnavailable(boolean unavailable) {
+		this.unavailable = unavailable;
+	}
+
+	public List<Bed> getBedId() {
+		return bedId;
+	}
+
+	public void setBedId(List<Bed> bedId) {
+		this.bedId = bedId;
+	}
+	
 }

@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.eci.arsw.happ.model.NurseAssistant;
+import edu.eci.arsw.happ.model.Nurses;
 import edu.eci.arsw.happ.model.Patient;
 
 @Service
@@ -24,29 +24,41 @@ public class HappServiceStub implements HappService {
 
 
     @Override
-    public List<NurseAssistant> getNurseAssistants() {
-        String query = "SELECT * FROM nurseassistant;";
-        List<NurseAssistant> nursesAssistants = new ArrayList<NurseAssistant>();
+    public List<Nurses> getNurseAssistants() {
+        String query = "SELECT * FROM nurses inner Join users on users.user_id = nurses.users_user_id;";
+        List<Nurses> nurses = new ArrayList<Nurses>();
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				String idDocument = rs.getString("idDocument");
-				String documentType = rs.getString("documentType");
+				int userID =rs.getInt("users_user_id");
+				String position = rs.getString("position");
+				String rh = rs.getString("rh");
 				String name = rs.getString("name");
-				NurseAssistant nurseAssistant = new NurseAssistant(idDocument,documentType,name);
-				nursesAssistants.add(nurseAssistant);
+				boolean active= rs.getBoolean("active");
+				String email =rs.getString("email");
+				String gov_id =rs.getString("gov_id");
+				String gov_type =rs.getString("gov_type");
+				String password =rs.getString("password");
+				String roles =rs.getString("roles");
+				String username =rs.getString("username");
+				Nurses nurse = new Nurses();
+				nurse.setName(name);
+				nurse.setNurseId(userID);
+				nurse.setPosition(position);
+				nurse.setRh(rh);
+				nurses.add(nurse);
 			}
 			connection.close();
-			return nursesAssistants;
+			return nurses;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
 		}
     }
-
+/* 
     @Override
     public List<Patient> getPatients() {
         String query = "SELECT * FROM patient;";
@@ -127,6 +139,6 @@ public class HappServiceStub implements HappService {
 			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
 		}
-    }
+    } */
     
 }
